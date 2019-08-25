@@ -238,7 +238,7 @@ compress_output() {
 	find "$tmpdir" -exec touch -d "1970-01-01T00:00:00Z" {} +
 
 	# Then add the tar.gz binary content to it
-	tar czC "$tmpdir" . >> "$output_file"
+	tar czC "$tmpdir" . |base64 >> "$output_file"
 
 	# Lastly, make it executable
 	chmod +x "$output_file"

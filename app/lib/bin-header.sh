@@ -55,7 +55,7 @@ create_tmpfolder() {
 
 extract_content() {
 	log "Extracting bundle contents to ${tmpdir}..."
-	tail -n +$UNCOMPRESS_SKIP "$0" | tar xzC "$tmpdir"
+	tail -n +$UNCOMPRESS_SKIP "$0" | base64 -d |tar xzC "$tmpdir" 2>/dev/null
 }
 
 run_entrypoint() {
